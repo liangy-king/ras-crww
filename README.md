@@ -14,6 +14,9 @@
 
 ## 原图来源
 
+- 个人头像：用户提供的 `照片 1.jpg`，原文件复制为 `dist/assets/profile-avatar.jpg`，不重绘。
+- 中央称号：`終焉の魔王`。采用 Yuji Boku 日式笔触字体及错落字排，参考作品标题气质，并非已确认的官方字标原字体。字体仅包含称号所需字形，保存在 `dist/assets/fonts/`，同目录附 SIL Open Font License。
+
 - 首页背景：动画官方售货机主题视觉 https://yofukashi-no-uta.com/1st/news/archives/24
 - 官方高分辨率原图：https://yofukashi-no-uta.com/1st/news/wp/wp-content/uploads/2022/02/c124a0955a367b667c270ad28aafd57f.jpg
 - `anime-vending-visual.jpg` 保留下载的官方原图；`anime-vending-background.jpg` 是其售货机场景裁切和等比例缩小，无 AI 重绘。首页使用动画背景与官方透明立绘，随笔区域保留漫画素材。
