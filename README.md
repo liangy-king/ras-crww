@@ -32,7 +32,9 @@
 
 ## 动画主题曲
 
-由富士电视台动画官方频道公开发布的无字幕动画版 OP / ED，经 YouTube IFrame API 播放。第一季：堕天（AwXRPWmgLbU）、よふかしのうた（PvyaVqfylu4）；第二季：Mirage（l5S0JhqULAU）、眠れ（K5T_aKoN31Q）。均由 Creepy Nuts 演唱。无音乐文件重新托管，播放依赖 YouTube 的地区、网络和嵌入可用性；播放器提供官方视频入口。仅实际播放事件触发唱片和进度动画，关闭视频时暂停。
+已移除 YouTube MV，改用同源 HTML Audio，收录两季四首 OP / ED 与ヨルシカ《だから僕は音楽を辞めた》 的选曲、切歌、进度、音量及列表循环。进入网站尝试有声自动播放；如浏览器拦截，在第一次点击页面或有效按键后播放，主动暂停后不会被其他点击重新唤醒。唱片仅随真实 playing / pause 事件旋转。
+
+音频来自用户提供的 FLAC，使用 FFmpeg 转为 192 kbps MP3，保留完整时长，移除封面和源文件元数据。五首文件位于 `dist/assets/music/`，与网页同源托管，无需 YouTube 或网易云播放接口。原始 FLAC 与转换程序保留在工作区的 `asset-work/`，不发布。
 
 ## 站内评论与角色更新
 
