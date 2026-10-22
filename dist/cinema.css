@@ -1,0 +1,102 @@
+/* Each take has an eye cut, a main scene and a departing scene. Only transform/opacity animate. */
+#night-transition{--tone:#b99be3;--pale:#e4dcf7;--ink:#171529;--figure:url('assets/nazuna-original.png');--fx-duration:1280ms;position:fixed;inset:0;z-index:100;pointer-events:none;overflow:hidden;isolation:isolate;contain:layout paint style}
+#night-transition[data-actor=anko]{--tone:#bc9878;--pale:#e9dfd1;--ink:#1c2228}
+.cin-edge,.cin-stage,.cin-exit{position:absolute;inset:0;transform:translate3d(-112%,0,0)}
+.cin-edge{inset:-20%;background:var(--tone);transform:translate3d(-120%,0,0) rotate(-8deg)}
+.cin-stage{background:var(--ink);overflow:hidden;isolation:isolate}
+.cin-city{position:absolute;inset:-5%;background:linear-gradient(110deg,#15142b66,#15142be6),url('assets/transitions/night-city.webp') center/cover;opacity:.55}
+.cin-water{position:absolute;inset:-40%;background:repeating-radial-gradient(ellipse at 75% 60%,transparent 0 8%,#bba7e314 9%,transparent 11% 14%);transform:rotate(-20deg);mix-blend-mode:screen}
+.cin-orbit{position:absolute;right:-15vh;top:-38vh;width:115vh;height:115vh;border:1px solid var(--tone);border-radius:50%;opacity:.26;box-shadow:0 0 0 6vh #b99be30c,0 0 0 17vh #b99be30a}
+.cin-orbit:after{content:'';position:absolute;inset:14%;border:1px dashed var(--tone);border-radius:50%}
+.cin-silhouette{position:absolute;inset:0 44% -15% -8%;background:var(--tone);mask:var(--figure) center/contain no-repeat;-webkit-mask:var(--figure) center/contain no-repeat;opacity:0}
+.cin-trail{background:var(--pale);mix-blend-mode:screen}
+.cin-shot{position:absolute;left:-6%;top:-8%;width:75%;height:116%;overflow:hidden;clip-path:polygon(0 0,100% 0,78% 100%,0 100%);transform:translate3d(-110%,0,0)}
+.cin-shot img{width:100%;height:100%;max-width:none;object-fit:cover;object-position:62% center}
+.cin-shot-shade{position:absolute;inset:0;background:linear-gradient(90deg,transparent 50%,var(--ink));opacity:.5}
+.cin-last{position:absolute;inset:0;opacity:0;overflow:hidden}
+.cin-last img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.cin-last:after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--ink) 85%);opacity:.7}
+.cin-eye{position:absolute;left:-5%;right:-5%;height:25%;top:27%;overflow:hidden;transform:translate3d(110%,0,0) rotate(-9deg);background:var(--tone);box-shadow:0 12px 0 var(--ink),0 -5px 0 var(--pale)}
+.cin-eye img{width:100%;height:360%;object-fit:cover;object-position:center;max-width:none;transform:translateY(-33%);filter:saturate(.7) contrast(1.12)}
+.cin-eye span{position:absolute;bottom:8px;right:8%;font:9px var(--display);letter-spacing:4px;color:white;text-shadow:2px 2px #171529}
+.cin-shards{position:absolute;inset:0;overflow:hidden;opacity:0}.cin-shards i{position:absolute;width:18px;height:28px;background:var(--tone);left:15%;top:70%;clip-path:polygon(0 20%,100% 0,65% 100%);opacity:.5}.cin-shards i:nth-child(2){left:25%;top:30%;width:9px;height:17px}.cin-shards i:nth-child(3){left:49%;top:80%;width:25px;height:38px}.cin-shards i:nth-child(4){left:62%;top:15%;width:7px;height:12px}.cin-shards i:nth-child(5){left:78%;top:68%;width:12px;height:25px}.cin-shards i:nth-child(6){left:90%;top:25%;width:17px;height:35px}
+.cin-grid{position:absolute;inset:8%;border:1px solid #e9dfd12b;opacity:0;clip-path:polygon(0 0,25% 0,25% 1%,1% 1%,1% 99%,25% 99%,25% 100%,0 100%,0 0,100% 0,100% 100%,75% 100%,75% 99%,99% 99%,99% 1%,75% 1%,75% 0)}
+.cin-sweep{position:absolute;inset:-40% -20%;background:linear-gradient(105deg,transparent 47%,var(--pale) 48% 48.3%,transparent 48.5% 50%,var(--tone) 50% 52%,transparent 52.3%);opacity:0}
+.cin-caption{position:absolute;left:57%;right:3%;top:34%;color:var(--pale);transform:translate3d(30%,0,0) rotate(-6deg);opacity:0}
+.cin-caption>small{font:9px var(--display);letter-spacing:3px;color:var(--tone);display:block}
+.cin-caption>strong{font:900 clamp(25px,4vw,70px)/1.6 'Yu Mincho','MS Mincho',var(--sans);white-space:nowrap;letter-spacing:.12em;display:block;text-shadow:.1em .09em 0 #08081088}
+.cin-caption>em{display:block;font:12px 'Yu Mincho',serif;letter-spacing:5px;color:var(--tone);margin-top:8px}
+.cin-destination{margin-top:34px;padding-top:15px;border-top:1px solid #e4dcf747;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.cin-destination>b{font:clamp(18px,3vw,44px) var(--display);text-shadow:.12em .1em 0 #81659f;white-space:nowrap}
+.cin-destination>span{font-size:10px;letter-spacing:2px}
+.cin-counter{position:absolute;bottom:5%;left:7%;right:7%;display:flex;justify-content:space-between;font:8px var(--display);letter-spacing:3px;color:var(--pale);opacity:0}
+.cin-exit{background:var(--pale);clip-path:polygon(0 0,100% 0,85% 100%,0 100%)}
+.is-running :is(.cin-stage,.cin-edge,.cin-shot,.cin-shot img,.cin-eye,.cin-caption,.cin-silhouette,.cin-last,.cin-exit){will-change:transform,opacity}
+.is-running .cin-edge{animation:cin-edge var(--fx-duration) cubic-bezier(.22,.7,.2,1) both}
+.is-running .cin-stage{animation:cin-stage var(--fx-duration) cubic-bezier(.22,.7,.2,1) both}
+.is-running .cin-city{animation:cin-city var(--fx-duration) linear both}
+.is-running .cin-water{animation:cin-water var(--fx-duration) linear both}
+.is-running .cin-orbit{animation:cin-orbit var(--fx-duration) linear both}
+.is-running .cin-silhouette{animation:cin-silhouette var(--fx-duration) cubic-bezier(.18,.75,.15,1) both}
+.is-running .cin-trail{animation-name:cin-trail}
+.is-running .cin-shot{animation:cin-shot var(--fx-duration) cubic-bezier(.18,.75,.15,1) both}
+.is-running .cin-shot img{animation:cin-camera var(--fx-duration) cubic-bezier(.16,.6,.2,1) both}
+.is-running .cin-eye{animation:cin-eye var(--fx-duration) cubic-bezier(.16,.75,.2,1) both}
+.is-running .cin-last{animation:cin-last var(--fx-duration) cubic-bezier(.2,.7,.2,1) both}
+.is-running .cin-last img{animation:cin-last-camera var(--fx-duration) linear both}
+.is-running .cin-caption{animation:cin-caption var(--fx-duration) cubic-bezier(.16,.75,.2,1) both}
+.is-running .cin-counter{animation:cin-counter var(--fx-duration) both}
+.is-running .cin-shards{animation:cin-particles var(--fx-duration) linear both}
+.is-running .cin-shards i{animation:cin-drift var(--fx-duration) linear both}.is-running .cin-shards i:nth-child(even){animation-direction:reverse}
+.is-running .cin-sweep{animation:cin-sweep var(--fx-duration) cubic-bezier(.25,.7,.2,1) both}
+.is-running .cin-exit{animation:cin-exit var(--fx-duration) cubic-bezier(.2,.7,.2,1) both}
+.cin-shot img[data-shot=anko-profile],.cin-last img[data-shot=anko-profile]{object-position:left center}
+#night-transition[data-actor=anko] .cin-shot{clip-path:polygon(0 0,91% 0,100% 84%,0 100%);width:66%}
+#night-transition[data-actor=anko] .cin-caption{transform:rotate(3deg)}
+#night-transition[data-actor=anko] .cin-water{display:none}
+#night-transition[data-actor=anko] .cin-orbit{border-radius:0;width:80vh;height:80vh;top:5%;right:-15%;box-shadow:none;transform:rotate(35deg)}
+#night-transition[data-actor=anko] .cin-orbit:after{border-radius:0}
+#night-transition[data-actor=anko] .cin-shards i{clip-path:none;background:var(--pale);width:35px;height:2px}
+#night-transition[data-actor=anko].is-running .cin-grid{animation:cin-grid var(--fx-duration) both}
+#night-transition[data-actor=anko] .cin-destination>b{text-shadow:.12em .1em 0 #665141}
+#night-transition[data-style=p5] .cin-shot{clip-path:polygon(0 10%,90% 0,100% 88%,0 100%);top:0;height:100%;left:0;width:66%}
+#night-transition[data-style=p5] .cin-water{display:none}
+#night-transition[data-style=p5] .cin-eye{height:21%;top:34%;box-shadow:0 13px 0 var(--tone),0 -7px 0 var(--ink)}
+#night-transition[data-style=p5].is-running .cin-stage{animation-name:cin-stage-cut}
+#night-transition[data-style=p5].is-running .cin-shot{animation-name:cin-shot-cut}
+#night-transition[data-style=p5].is-running .cin-eye{animation-name:cin-eye-cut}
+#night-transition[data-style=p5] .cin-caption{left:59%;top:33%}
+#night-transition[data-style=p5] .cin-caption>strong{font-family:var(--sans);font-style:italic;letter-spacing:-2px}
+#night-transition[data-style=p5] .cin-orbit{border-radius:0;transform:rotate(24deg);border-width:14px;opacity:.1}
+#night-transition[data-style=p5] .cin-city{opacity:.25}
+#night-transition[data-style=p5] .cin-caption>small{background:var(--pale);color:var(--ink);display:inline-block;padding:5px 10px;transform:rotate(3deg)}
+.cin-preview-buttons{display:flex;gap:30px;flex-wrap:wrap}
+/* The destination enters from its own depth plane; the music and form stay mounted. */
+body.is-transitioning #content-scroll{animation:cin-content var(--fx-duration,1280ms) cubic-bezier(.2,.7,.2,1) both}
+@keyframes cin-edge{0%{transform:translate3d(-130%,0,0) rotate(-8deg)}17%,76%{transform:translate3d(0,0,0) rotate(-8deg)}100%{transform:translate3d(130%,0,0) rotate(-8deg)}}
+@keyframes cin-stage{0%{transform:translate3d(-112%,0,0)}18%,79%{transform:translate3d(0,0,0)}100%{transform:translate3d(112%,0,0)}}
+@keyframes cin-city{from{transform:scale(1.18) translate3d(2%,2%,0)}to{transform:scale(1.04) translate3d(-2%,-2%,0)}}
+@keyframes cin-water{from{transform:rotate(-20deg) translate3d(0,5%,0) scale(1)}to{transform:rotate(-10deg) translate3d(0,-5%,0) scale(1.16)}}
+@keyframes cin-orbit{from{rotate:-18deg;scale:.9}to{rotate:12deg;scale:1.15}}
+@keyframes cin-silhouette{0%,9%{opacity:0;transform:translate3d(-20%,26%,0) rotate(-18deg) scale(1.1)}21%,35%{opacity:.65;transform:translate3d(3%,0,0) rotate(-8deg) scale(1)}53%,100%{opacity:0;transform:translate3d(12%,-15%,0) rotate(3deg) scale(1.04)}}
+@keyframes cin-trail{0%,8%{opacity:0;transform:translate3d(-30%,32%,0) rotate(-20deg)}19%,30%{opacity:.25;transform:translate3d(-3%,6%,0) rotate(-12deg)}50%,100%{opacity:0;transform:translate3d(10%,-10%,0) rotate(0)}}
+@keyframes cin-shot{0%,19%{opacity:0;transform:translate3d(-85%,12%,0) rotate(-9deg)}35%{opacity:1;transform:translate3d(0,0,0) rotate(-2deg)}65%{opacity:1;transform:translate3d(2%,-2%,0) rotate(0)}82%,100%{opacity:0;transform:translate3d(-8%,-8%,0) rotate(4deg)}}
+@keyframes cin-camera{0%,23%{transform:scale(1.24) translate3d(4%,0,0)}65%,100%{transform:scale(1.04) translate3d(-2%,0,0)}}
+@keyframes cin-eye{0%,7%{transform:translate3d(115%,0,0) rotate(-9deg)}19%,27%{transform:translate3d(0,0,0) rotate(-9deg)}42%,100%{transform:translate3d(-120%,0,0) rotate(-9deg)}}
+@keyframes cin-last{0%,61%{opacity:0;transform:translate3d(7%,0,0) scale(1.06)}72%,84%{opacity:.82;transform:translate3d(0,0,0) scale(1)}100%{opacity:0;transform:translate3d(-5%,0,0) scale(1)}}
+@keyframes cin-last-camera{from{transform:scale(1.12) translate3d(0,2%,0)}to{transform:scale(1) translate3d(0,-2%,0)}}
+@keyframes cin-caption{0%,24%{opacity:0;transform:translate3d(25%,15%,0) rotate(-11deg)}39%{opacity:1;transform:translate3d(0,0,0) rotate(-6deg)}72%{opacity:1;transform:translate3d(-2%,-4%,0) rotate(-6deg)}90%,100%{opacity:0;transform:translate3d(-20%,-12%,0) rotate(-8deg)}}
+@keyframes cin-counter{0%,24%{opacity:0;transform:translateY(10px)}36%,75%{opacity:.7;transform:translateY(0)}88%,100%{opacity:0;transform:translateY(-10px)}}
+@keyframes cin-particles{0%,17%{opacity:0}28%,76%{opacity:1}95%,100%{opacity:0}}
+@keyframes cin-drift{from{transform:translate3d(0,8vh,0) rotate(0)}to{transform:translate3d(-5vw,-10vh,0) rotate(85deg)}}
+@keyframes cin-grid{0%,22%{opacity:0;transform:scale(1.13)}34%,70%{opacity:.5;transform:scale(1)}90%,100%{opacity:0;transform:scale(.95)}}
+@keyframes cin-sweep{0%,59%{opacity:0;transform:translate3d(-100%,0,0)}65%{opacity:.6}84%,100%{opacity:0;transform:translate3d(100%,0,0)}}
+@keyframes cin-exit{0%,78%{transform:translate3d(-120%,0,0)}90%{transform:translate3d(15%,0,0)}100%{transform:translate3d(120%,0,0)}}
+@keyframes cin-stage-cut{0%{transform:translate3d(0,-110%,0) rotate(-4deg)}16%,79%{transform:translate3d(0,0,0) rotate(0)}100%{transform:translate3d(0,110%,0) rotate(4deg)}}
+@keyframes cin-shot-cut{0%,22%{opacity:0;transform:translate3d(-110%,0,0) rotate(12deg)}32%{opacity:1;transform:translate3d(1%,0,0) rotate(-3deg)}62%{opacity:1;transform:translate3d(-1%,0,0) rotate(-4deg)}77%,100%{opacity:0;transform:translate3d(-40%,20%,0) rotate(-12deg)}}
+@keyframes cin-eye-cut{0%,7%{transform:translate3d(-120%,0,0) rotate(-12deg)}17%,25%{transform:translate3d(0,0,0) rotate(-12deg)}37%,100%{transform:translate3d(120%,0,0) rotate(-12deg)}}
+@keyframes cin-content{0%,45%{opacity:1;transform:none}49%,60%{opacity:.35;transform:translate3d(28px,10px,0) scale(.98)}100%{opacity:1;transform:none}}
+@media(max-width:760px){.cin-shot{width:110%;left:-24%;height:88%;top:-3%;clip-path:polygon(0 0,100% 0,80% 100%,0 100%)}.cin-caption,#night-transition[data-style=p5] .cin-caption{left:10%;right:5%;top:auto;bottom:16%;z-index:2}.cin-caption>small{font-size:8px;letter-spacing:2px}.cin-caption>strong{font-size:35px}.cin-caption>em{font-size:11px;letter-spacing:3px}.cin-destination{margin-top:16px;gap:12px}.cin-destination>b{font-size:26px}.cin-destination>span{font-size:10px}.cin-eye{height:19%;top:24%}.cin-eye img{height:450%;transform:translateY(-38%)}.cin-silhouette{inset:0 0 -8% -25%}.cin-last img{object-position:60% center}.cin-shot-shade{background:linear-gradient(0deg,var(--ink),transparent 65%);opacity:1}#night-transition[data-actor=anko] .cin-shot,#night-transition[data-style=p5] .cin-shot{width:110%;left:-15%;height:83%;top:-3%}.cin-stage:after{content:'';position:absolute;inset:45% 0 0;background:linear-gradient(0deg,var(--ink) 18%,transparent);pointer-events:none;z-index:1}.cin-counter{z-index:2;bottom:5%;font-size:7px}.cin-orbit{width:80vh;height:80vh;top:-20%;right:-60%}}
+@media(prefers-reduced-motion:reduce){#night-transition{display:none!important}body.is-transitioning #content-scroll{animation:none!important}}
+
+#night-transition[data-actor=anko] .cin-city{background-image:linear-gradient(110deg,#1c222833,#1c2228eb),url("assets/transitions/anko-profile.webp");opacity:.42}
