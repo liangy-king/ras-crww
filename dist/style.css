@@ -18,4 +18,5 @@
 .cover-top,.cover-title,.cover-bottom{z-index:1}
 [data-theme=light] .anime-scene{background-image:linear-gradient(90deg,#eeebf4 0%,#eeebf4f5 25%,#eeebf4a6 48%,#eeebf438 72%,#eeebf455 100%),linear-gradient(0deg,#eeebf4,transparent 30%),url('assets/anime-vending-background.jpg');opacity:1}
 [data-theme=light] .character-caption{background:#eeeaf3aa}
+[data-theme=light] .primary{color:#fff}
 @media(max-width:760px){.anime-scene{background-size:auto 100%;background-position:72% center;background-image:linear-gradient(90deg,#12131ff5,#12131f99 55%,#12131f55),linear-gradient(0deg,#12131f,transparent 40%),url('assets/anime-vending-background.jpg');opacity:1}[data-theme=light] .anime-scene{background-image:linear-gradient(90deg,#eeebf4f2,#eeebf4ad 55%,#eeebf466),linear-gradient(0deg,#eeebf4,transparent 40%),url('assets/anime-vending-background.jpg')}.character-caption{right:-12px;padding:7px}.work-cover>img{object-position:center 60%}}
