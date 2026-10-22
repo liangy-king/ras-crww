@@ -12,6 +12,10 @@
 
 ## 原图来源
 
+- 首页背景：动画官方售货机主题视觉 https://yofukashi-no-uta.com/1st/news/archives/24
+- 官方高分辨率原图：https://yofukashi-no-uta.com/1st/news/wp/wp-content/uploads/2022/02/c124a0955a367b667c270ad28aafd57f.jpg
+- `anime-vending-visual.jpg` 保留下载的官方原图；`anime-vending-background.jpg` 是其售货机场景裁切和等比例缩小，无 AI 重绘。首页使用动画背景与官方透明立绘，随笔区域保留漫画素材。
+
 - 原始透明立绘：https://yofukashi-no-uta.com/1st/character/img/nazuna_visual.png?2
 - 官方表情图：https://yofukashi-no-uta.com/1st/character/img/nazuna_face_1.png
 - 官方角色页：https://yofukashi-no-uta.com/1st/character/#/nazuna
