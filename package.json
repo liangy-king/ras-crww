@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "node server.mjs",
-    "check": "node --check dist/transitions.js && node --check dist/app.js && node --check dist/pets.js && node --check dist/music.js && node --check dist/comments.js && node --check server.mjs && node --test tests/transitions.test.cjs"
+    "check": "node --check dist/sections.js && node --check dist/world.js && node --check dist/transitions.js && node --check dist/app.js && node --check dist/pets.js && node --check dist/music.js && node --check dist/comments.js && node --check server.mjs && node --test tests/transitions.test.cjs"
   }
 }

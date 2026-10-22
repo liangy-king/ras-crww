@@ -1,0 +1,153 @@
+[
+  {
+    "file": "assets/cast/kou-main.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/01/main.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/kou-face01.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/01/face01.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/kou-face02.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/01/face02.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/nazuna-main.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/02/main.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/nazuna-face01.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/02/face01.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/nazuna-face02.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/02/face02.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/seri-main.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/04/main.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/seri-face01.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/04/face01.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/seri-face02.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/04/face02.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/mahiru-main.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/09/main.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/mahiru-face01.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/09/face01.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/mahiru-face02.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/09/face02.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/anko-main.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/11/main.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/anko-face01.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/11/face01.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/anko-face02.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/11/face02.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/kiku-main.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/12/main.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/kiku-face01.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/12/face01.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/cast/kiku-face02.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/12/face02.webp",
+    "processing": "Proportional resize and WebP compression only; original transparency preserved."
+  },
+  {
+    "file": "assets/transitions/kou-street.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/06/sml06.jpg",
+    "processing": "Proportional resize to 1280px and WebP compression."
+  },
+  {
+    "file": "assets/transitions/kou-surprise.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/08/02s-1.jpg",
+    "processing": "Proportional resize to 1280px and WebP compression."
+  },
+  {
+    "file": "assets/transitions/kiku-warm.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/07/01s.jpg",
+    "processing": "Proportional resize to 1280px and WebP compression."
+  },
+  {
+    "file": "assets/transitions/mahiru-flowers.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/07/02s.jpg",
+    "processing": "Proportional resize to 1280px and WebP compression."
+  },
+  {
+    "file": "assets/transitions/seri-frame.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/08/06s-3.jpg",
+    "processing": "Proportional resize to 1280px and WebP compression."
+  },
+  {
+    "file": "assets/transitions/seri-profile.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/09/04.jpg",
+    "processing": "Proportional resize to 1280px and WebP compression."
+  },
+  {
+    "file": "assets/transitions/seri-rooftop.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/09/06s-1.jpg",
+    "processing": "Proportional resize to 1280px and WebP compression."
+  },
+  {
+    "file": "assets/scenes/kou.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/06/sml06.jpg",
+    "processing": "crop=520:1080:1400:0,scale=780:-1; original environment crop, no generated pixels."
+  },
+  {
+    "file": "assets/scenes/anko.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/09/05s.jpg",
+    "processing": "scale=1600:-1; original environment crop, no generated pixels."
+  },
+  {
+    "file": "assets/scenes/kiku.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/07/02s.jpg",
+    "processing": "crop=570:1080:0:0,scale=760:-1; original environment crop, no generated pixels."
+  },
+  {
+    "file": "assets/scenes/seri.webp",
+    "source": "https://yofukashi-no-uta.com/2ndwp/wp-content/uploads/2025/09/06s-1.jpg",
+    "processing": "crop=1000:270:920:0,scale=1600:-1; original environment crop, no generated pixels."
+  },
+  {
+    "file": "assets/scenes/mahiru.webp",
+    "source": "https://shogakukan-comic.jp/book?isbn=9784091294920",
+    "originalLocal": "assets/manga-street.jpg",
+    "processing": "Existing original manga street crop resized and compressed. Warm color is a runtime overlay; no redraw."
+  }
+]

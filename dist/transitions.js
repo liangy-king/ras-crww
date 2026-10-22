@@ -1,48 +1,35 @@
-// Original anime stills, independently animated camera planes, one navigation clock.
+// Six-character cinematic controller. Route visits and content share one commit point.
 (()=>{
-  const overlay=document.getElementById('night-transition');
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  const cast={
-    nazuna:{name:'NANAKUSA NAZUNA',jp:'七草 ナズナ',note:'夜を、自由に。',figure:'nazuna-original.png',shots:[['nazuna-gaze','nazuna-night','nazuna-vampire'],['nazuna-vampire','nazuna-smile','nazuna-night']]},
-    anko:{name:'UGUISU ANKO',jp:'鶯 アンコ',note:'夜の向こう側へ。',figure:'anko-season2.webp',shots:[['anko-profile','anko-neon','anko-smile'],['anko-neon','anko-profile','anko-smile']]}
-  };
-  const rounds={nazuna:0,anko:0},preloads=[];
-  for(const name of new Set(Object.values(cast).flatMap(c=>c.shots.flat()))) {
-    if(typeof Image==='undefined')break;
-    const img=new Image();img.src=`assets/transitions/${name}.webp`;
-    img.decode?.().catch(()=>{});preloads.push(img);
-  }
-  let active=null,queued=null;
+  const routes=window.NightSections,overlay=document.getElementById('night-transition'),skip=document.getElementById('skip-transition');
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)'),rounds={};let visits=new Set(),active=null,queued=null;
+  try{const saved=JSON.parse(sessionStorage.getItem('ras-section-visits-v1')||'[]');if(Array.isArray(saved))visits=new Set(saved.filter(id=>Object.hasOwn(routes,id)))}catch{}
   const disabled=()=>document.hidden||reduced.matches||document.body.dataset.motion==='off';
-  function caption(task){
-    document.getElementById('fx-title').textContent=task.label||'NIGHT WALK';
-    document.getElementById('fx-subtitle').textContent=task.subtitle||'AFTER MIDNIGHT';
-  }
-  function draw(task){
-    const actor=task.actor==='anko'?'anko':'nazuna',person=cast[actor];
-    const variant=rounds[actor]++%person.shots.length,shots=person.shots[variant];
-    overlay.dataset.actor=actor;overlay.dataset.variant=String(variant);
+  const routeFor=task=>routes[task.routeId]||Object.values(routes).find(r=>r.actor===task.actor)||routes.home;
+  function remember(task){if(!routes[task.routeId]||task.remember===false)return;visits.add(task.routeId);try{sessionStorage.setItem('ras-section-visits-v1',JSON.stringify([...visits]))}catch{}}
+  function apply(task){remember(task);try{task.onCommit?.()}catch(error){console.error('Page transition failed',error)}}
+  function draw(task,ms){
+    const route=routeFor(task),variant=(rounds[route.actor]||0)%route.shots.length;rounds[route.actor]=(rounds[route.actor]||0)+1;
+    overlay.dataset.actor=route.actor;overlay.dataset.route=task.routeId||'';overlay.dataset.variant=String(variant);overlay.dataset.duration=String(ms);
     overlay.dataset.style=task.style||document.body.dataset.style;
-    overlay.style.setProperty('--figure',`url("assets/${person.figure}")`);
-    ['fx-eye','fx-shot','fx-last'].forEach((id,i)=>{const image=document.getElementById(id);image.src=`assets/transitions/${shots[i]}.webp`;image.dataset.shot=shots[i]});
-    document.getElementById('fx-character').textContent=person.name;
-    document.getElementById('fx-name').textContent=person.jp;
-    document.getElementById('fx-note').textContent=person.note;
-    caption(task);
+    for(const [key,value] of Object.entries({tone:route.dark.accent,pale:route.dark.text,ink:route.dark.bg,figure:`url("${route.figure}")`,'cin-scene':`url("${route.scene}")`}))overlay.style.setProperty('--'+key,value);
+    ['fx-eye','fx-shot','fx-last'].forEach((id,i)=>{const img=document.getElementById(id),shot=route.shots[variant][i];img.src=shot.src;img.dataset.portrait=String(!!shot.portrait);img.style.setProperty('--focus',shot.focus);img.style.setProperty('opacity','1');img.onerror=()=>img.style.setProperty('opacity','0')});
+    document.getElementById('fx-character').textContent=route.en;
+    document.getElementById('fx-name').textContent=route.jp;
+    document.getElementById('fx-note').textContent=route.note;
+    document.getElementById('fx-title').textContent=task.label||route.word;
+    document.getElementById('fx-subtitle').textContent=task.subtitle||route.name;
+    window.NightWorld?.prepare(task.routeId);
   }
-  function commit(flight){
-    if(active!==flight||flight.committed)return;
-    flight.committed=true;
-    try{flight.task.onCommit?.()}catch(error){console.error('Page transition failed',error)}
-  }
-  function finish(flight){
-    if(active!==flight)return;
-    commit(flight);flight.timers.forEach(clearTimeout);
-    if(flight.frame)cancelAnimationFrame(flight.frame);
+  function commit(flight){if(active!==flight||flight.committed)return;flight.committed=true;apply(flight.task)}
+  function stop(flight){
+    flight.timers.forEach(clearTimeout);if(flight.frame)cancelAnimationFrame(flight.frame);
     const intervals=flight.intervals.sort((a,b)=>a-b);
     if(intervals.length){overlay.dataset.frameP95=intervals[Math.floor((intervals.length-1)*.95)].toFixed(1);overlay.dataset.frameCount=String(intervals.length)}
-    overlay.hidden=true;overlay.classList.remove('is-running');document.body.classList.remove('is-transitioning');active=null;
-    const next=queued;queued=null;if(next)run(next);
+    overlay.hidden=true;skip.hidden=true;overlay.classList.remove('is-running');document.body.classList.remove('is-transitioning');active=null;
+  }
+  function finish(flight,flush=false){
+    if(active!==flight)return;commit(flight);const next=queued;queued=null;stop(flight);
+    if(next){if(flush||disabled()){apply(next);window.NightWorld?.reveal()}else run(next)}else window.NightWorld?.reveal()
   }
   function measure(flight){
     if(typeof requestAnimationFrame!=='function')return;
@@ -50,17 +37,17 @@
     flight.frame=requestAnimationFrame(frame);
   }
   function run(task={}){
-    if(active){if(!active.committed){active.task=task;caption(task)}else queued=task;return}
-    if(disabled()){task.onCommit?.();return}
-    const flight={task,committed:false,timers:[],intervals:[]};active=flight;
-    const ms=task.duration||((task.style||document.body.dataset.style)==='p5'?1120:1280);
-    draw(task);overlay.hidden=false;overlay.style.setProperty('--fx-duration',ms+'ms');document.body.style?.setProperty('--fx-duration',ms+'ms');
+    if(active){if(!active.committed){stop(active);queued=null}else{queued=task;return}}
+    if(disabled()){apply(task);window.NightWorld?.reveal();return}
+    const ms=task.duration??(visits.has(task.routeId)?1600:3200),flight={task,committed:false,timers:[],intervals:[]};active=flight;
+    draw(task,ms);overlay.hidden=false;skip.hidden=false;
+    overlay.style.setProperty('--fx-duration',ms+'ms');document.body.style?.setProperty('--fx-duration',ms+'ms');
     void overlay.offsetWidth;overlay.classList.add('is-running');document.body.classList.add('is-transitioning');measure(flight);
-    // Opaque stage covers the viewport from 18% to 79%.
-    flight.timers.push(setTimeout(()=>commit(flight),Math.round(ms*.5)),setTimeout(()=>finish(flight),ms),setTimeout(()=>finish(flight),ms+600));
+    flight.timers.push(setTimeout(()=>commit(flight),ms/2),setTimeout(()=>finish(flight),ms),setTimeout(()=>finish(flight),ms+600));
   }
-  function settle(){if(active)finish(active)}
-  reduced.addEventListener('change',()=>{if(disabled())settle()});
+  function settle(){if(active)finish(active,true)}
+  skip.addEventListener('click',settle);
+  reduced.addEventListener('change',()=>{if(disabled())settle();window.NightWorld?.sync()});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)settle()});
-  window.nightFX={run,settle,get busy(){return !!active},get disabled(){return disabled()}};
+  window.nightFX={run,settle,get busy(){return !!active},get disabled(){return disabled()},hasVisited(id){return visits.has(id)}};
 })();
