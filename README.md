@@ -1,43 +1,46 @@
-# ras_crww · 夜间个人主页
+# ras_crww · 夜间游戏菜单版
 
-本地运行：`npm run dev`，打开 http://127.0.0.1:4173 。无需安装依赖。
+个人网站以左侧菜单和中央栏目舞台组织，参考 P3/P5 设置菜单的选中条、斜向分区与人物剪影转场。使用七草荠银灰、淡紫、冷蓝和黑色配色。
 
-静态文件位于 `dist/`，可直接部署。运行 `npm run check` 检查 JavaScript 语法。
+## 运行与发布
 
-## GitHub Pages
+- `npm run dev`：http://127.0.0.1:4173
+- `npm run check`：检查所有脚本语法并运行转场行为测试。
+- 发布内容为 `dist/`，无第三方运行依赖。GitHub Actions 将 main 分支发布到 GitHub Pages。
 
-网页桌宠使用之前制作的两个原始 v2 精灵图：七草荠头像抱枕（更新后的左右翻滚版本）与七草荠 Q 版。位于 `dist/assets/pets/`，保持原始图像不变。网页支持点击互动、拖动、双击跳跃、鼠标方向注视、键盘移动与空格跳跃，以及暂停、收起和重新召唤。暂停和显示偏好保存在本机浏览器；遵循系统减少动态效果偏好。不会修改 ChatGPT 中的桌宠状态。
+## 界面与交互
 
-已提供 `.github/workflows/pages.yml`。仓库 Settings → Pages → Build and deployment 选择 GitHub Actions。PR 会运行 JavaScript 语法检查，合并到 `main` 后将 `dist/` 发布到 Pages。资源使用相对路径，可用于项目仓库子路径。无需安装依赖或填写部署密钥。
+- 首页、关于、随笔、作品、留言、设置采用同一文档内的栏目切换，保留原有 #home / #about / #notes / #works / #comments 深链接。旧 #contact 对应关于页的联系信息。
+- 栏目切换只隐藏、显示已有内容；音乐元素和留言表单不重新挂载。浏览器前进后退、键盘方向键选择菜单、Enter 进入、Escape 返回首页可用；输入控件内不拦截方向键。
+- 名字与英文左侧菜单使用本地 Russo One，银白主体、向右 12%、向下 10% 的淡紫硬投影，无描边。中文标签使用系统粗体。称号「終焉の魔王」沿用本地 Yuji Boku 字形。
+- 设置可切换 P3 流动斜面 / P5 剪影切入、深夜 / 月白主题、转场开关、桌宠显示；偏好保存到当前浏览器。
+- 转场以七草荠为主，作品栏目使用莺馅子。由官方透明人物图的 CSS 蒙版形成剪影，使用分层平移、旋转和缩放；不声称复现原作专用 3D 模型或逐帧角色动画。
+- 首次进入当前标签页会话播放一次入场，设置中可重看。快速连点合并为最新目的地，异常自动清理遮罩；遵循系统减少动态效果设置。
+- 弹窗有进入和关闭动画，支持 Escape 和点击外侧关闭，使用原生 dialog 焦点管理。
 
-功能：响应式首页、持久化明暗主题、锚点导航、文章与作品弹窗、素材来源、鼠标星点、黑胶播放器（两季动画官方 OP / ED，支持播放暂停、选曲、切歌、进度、音量）。尊重系统减少动态效果设置。社交账号尚未提供，点击显示待填写提示。
+## 原始素材与字体
 
-## 原图来源
-
-- 个人头像：用户提供的 `照片 1.jpg`，原文件复制为 `dist/assets/profile-avatar.jpg`，不重绘。
-- 中央称号：`終焉の魔王`。采用 Yuji Boku 日式笔触字体及错落字排，参考作品标题气质，并非已确认的官方字标原字体。字体仅包含称号所需字形，保存在 `dist/assets/fonts/`，同目录附 SIL Open Font License。
-
-- 首页背景：动画官方售货机主题视觉 https://yofukashi-no-uta.com/1st/news/archives/24
+- 背景：动画官方售货机视觉 https://yofukashi-no-uta.com/1st/news/archives/24
 - 官方高分辨率原图：https://yofukashi-no-uta.com/1st/news/wp/wp-content/uploads/2022/02/c124a0955a367b667c270ad28aafd57f.jpg
-- `anime-vending-visual.jpg` 保留下载的官方原图；`anime-vending-background.jpg` 是其售货机场景裁切和等比例缩小，无 AI 重绘。首页使用动画背景与官方透明立绘，随笔区域保留漫画素材。
+- anime-vending-visual.jpg 为原图；anime-vending-background.jpg 为既有原图场景裁切。新界面直接使用该裁切，只缩放、压暗和调色，没有生成、扩图或重绘建筑。
+- 七草荠完整立绘、转场蒙版：第一季官网原始透明图 https://yofukashi-no-uta.com/1st/character/img/nazuna_visual.png?2 （assets/nazuna-original.png）。
+- 莺馅子完整立绘、转场蒙版：https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/11/main.webp （assets/anko-season2.webp）。
+- 个人头像：用户提供的照片原文件复制，不重绘。
+- 漫画：小学馆第一卷官方公开试读 https://shogakukan-comic.jp/book?isbn=9784091294920 。随笔、作品为明确标记的台词和视觉收藏占位，不编造个人经历。
+- 旧版 nazuna-coat-cutout.png 是此前 AI 辅助去背景资产，本版没有引用；本版显示人物及剪影均使用上述官方透明原图。
+- Russo One 来自 Google Fonts，字体子集和许可证位于 assets/fonts/russo-one-menu.ttf 与 Russo-One-OFL.txt。Yuji Boku 子集与许可证也在同目录。均为 SIL Open Font License。
+- 人物与漫画版权归原作者及权利人所有，菜单设计参考不表示与游戏或动画官方有关联。
 
-- 原始透明立绘：https://yofukashi-no-uta.com/1st/character/img/nazuna_visual.png?2
-- 官方表情图：https://yofukashi-no-uta.com/1st/character/img/nazuna_face_1.png
-- 官方角色页：https://yofukashi-no-uta.com/1st/character/#/nazuna
-- 漫画来源：https://shogakukan-comic.jp/book?isbn=9784091294920
-- 公开试读：https://sc-portal.tameshiyo.me/9784091294920
-- `manga-street.jpg` 为试读图片 11 的等比例场景裁切，原文件同时保留。页面背景仅进行 CSS 蓝紫调色和渐变遮罩，无 AI 重绘。原立绘 PNG 保持下载内容不变。
+## 音乐、留言与桌宠
 
-人物和漫画版权归原作者及权利人所有。文案为少量原作短句占位；社交信息及个人经历未编造。字体提供离线系统字体回退。
+五首用户提供的 FLAC 已转为 192 kbps MP3，保留完整歌曲，位于 assets/music/。四首动漫 OP/ED 与ヨルシカ《だから僕は音楽を辞めた》通过本站纯音频播放，不依赖 MV、YouTube 或网易云接口。进入页面尝试自动播放；若浏览器拦截，首次点击后播放。支持选曲、切歌、进度、静音与音量、列表循环。
 
-## 动画主题曲
+评论接口继续使用 https://ras-crww-comments.cosmicflea4.chatgpt.site/api/comments ，不改动后端和已有留言。支持昵称匿名提交、分页、刷新与本人会话删除，前端以 textContent 渲染访客输入。
 
-已移除 YouTube MV，改用同源 HTML Audio，收录两季四首 OP / ED 与ヨルシカ《だから僕は音楽を辞めた》 的选曲、切歌、进度、音量及列表循环。进入网站尝试有声自动播放；如浏览器拦截，在第一次点击页面或有效按键后播放，主动暂停后不会被其他点击重新唤醒。唱片仅随真实 playing / pause 事件旋转。
+两个桌宠复用之前制作的原始 v2 精灵图。支持拖动、点击、双击跳跃、方向注视、键盘操作、暂停与收起。默认停靠在底部安全区域以避开表单和播放器控件。
 
-音频来自用户提供的 FLAC，使用 FFmpeg 转为 192 kbps MP3，保留完整时长，移除封面和源文件元数据。五首文件位于 `dist/assets/music/`，与网页同源托管，无需 YouTube 或网易云播放接口。原始 FLAC 与转换程序保留在工作区的 `asset-work/`，不发布。
+## 修改前备份
 
-## 站内评论与角色更新
+基准前端提交：85189b7fe029a897cc6c788e2898785693644cbc。
 
-评论前端为 dist/comments.js，API 地址 https://ras-crww-comments.cosmicflea4.chatgpt.site/api/comments 。后端源码位于同级 comment-service 目录，使用 Sites + D1 持久化。访客在网页内填写昵称和留言，不需要 GitHub 账号，支持读取、提交和本人会话删除。仅昵称与内容公开显示；会话与限流数据不返回。前端使用 textContent 输出访客输入，页面载入时不伪造评论。
-
-莺馅子全身图来自第二季动画官网透明图：https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/11/main.webp 。七草荠采用官方售货机视觉作为参考，通过内置 imagegen 进行去背景处理，生成透明全身图 assets/nazuna-coat-cutout.png；提示词要求保留长外套、饮料罐、表情和全身姿势并去掉背景，不是未经处理的官方原文件。
+工作区同级 backups/ras-crww-20261022-before-game-menu/ 保存网站源码及静态资源 ZIP、Git 历史 bundle、评论后端源码 ZIP 和 RESTORE.txt。备份包含五首 MP3；评论源码备份不是线上数据库快照，不包含密钥和访客会话凭据。独立工作树为 ras-crww-menu，原基准可从备份或 Git 历史恢复。

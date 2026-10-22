@@ -34,5 +34,6 @@
   let pointer={x:innerWidth/2,y:innerHeight/2};document.addEventListener('pointermove',e=>{pointer={x:e.clientX,y:e.clientY}},{passive:true});
   let tick=0;
   setInterval(()=>{if(hidden||paused||document.hidden)return;tick++;const now=performance.now();pets.forEach(p=>{if(p.drag)return;if(p.action&&now<p.action.end){p.row=p.action.row;const count=p.row===3?4:p.row===4?5:8;p.frame=Math.floor((now-p.action.start)/120)%count}else{p.action=null;if(reduced){p.row=0;p.frame=0}else if(tick%65>48){const s=size(p);let angle=(Math.atan2(pointer.y-(p.y+s.h/2),pointer.x-(p.x+s.w/2))*180/Math.PI+90+360)%360;const direction=Math.round(angle/22.5)%16;p.row=9+Math.floor(direction/8);p.frame=direction%8}else{p.row=0;p.frame=Math.floor(tick/2)%6}}draw(p)})},120);
-  window.addEventListener('resize',()=>pets.forEach(p=>{position(p);draw(p)}));pets.forEach(p=>{position(p);draw(p)});sync();
+  function dock(){pets.forEach((p,i)=>{if(p.drag)return;const s=size(p);p.x=innerWidth<=760?(i?innerWidth-s.w-8:8):(i?145:12);p.y=innerHeight-s.h-5;position(p);draw(p)})}
+  window.addEventListener('resize',dock);dock();sync();
 })();
