@@ -33,3 +33,9 @@
 ## 动画主题曲
 
 由富士电视台动画官方频道公开发布的无字幕动画版 OP / ED，经 YouTube IFrame API 播放。第一季：堕天（AwXRPWmgLbU）、よふかしのうた（PvyaVqfylu4）；第二季：Mirage（l5S0JhqULAU）、眠れ（K5T_aKoN31Q）。均由 Creepy Nuts 演唱。无音乐文件重新托管，播放依赖 YouTube 的地区、网络和嵌入可用性；播放器提供官方视频入口。仅实际播放事件触发唱片和进度动画，关闭视频时暂停。
+
+## 站内评论与角色更新
+
+评论前端为 dist/comments.js，API 地址 https://ras-crww-comments.cosmicflea4.chatgpt.site/api/comments 。后端源码位于同级 comment-service 目录，使用 Sites + D1 持久化。访客在网页内填写昵称和留言，不需要 GitHub 账号，支持读取、提交和本人会话删除。仅昵称与内容公开显示；会话与限流数据不返回。前端使用 textContent 输出访客输入，页面载入时不伪造评论。
+
+莺馅子全身图来自第二季动画官网透明图：https://yofukashi-no-uta.com/2ndwp/wp-content/themes/26385400ac1b/static/character/11/main.webp 。七草荠采用官方售货机视觉作为参考，通过内置 imagegen 进行去背景处理，生成透明全身图 assets/nazuna-coat-cutout.png；提示词要求保留长外套、饮料罐、表情和全身姿势并去掉背景，不是未经处理的官方原文件。

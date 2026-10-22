@@ -7,12 +7,15 @@
     {name:'眠れ',tag:'SEASON 2 · ED',id:'K5T_aKoN31Q'}
   ];
   const el=s=>document.querySelector(s),select=el('#track-select'),play=el('#play'),progress=el('#progress'),volume=el('#volume');
+  const svg=body=>'<svg viewBox="0 0 24 24" aria-hidden="true">'+body+'</svg>';
+  const playIcon=svg('<path d="m9 5 11 7-11 7Z" fill="currentColor" stroke="none"/>'),pauseIcon=svg('<path d="M8 5v14M16 5v14" stroke-width="3"/>'),volumeIcon=svg('<path d="M11 5 6 9H3v6h3l5 4Z"/><path d="M15 8a6 6 0 0 1 0 8M18 5a10 10 0 0 1 0 14"/>'),mutedIcon=svg('<path d="M11 5 6 9H3v6h3l5 4Z"/><path d="m16 9 6 6m0-6-6 6"/>');
+  el('#previous').innerHTML=svg('<path d="M5 5v14M19 5 8 12l11 7Z"/>');el('#next').innerHTML=svg('<path d="M19 5v14M5 5l11 7-11 7Z"/>');el('#mute').innerHTML=volumeIcon;
   let track=0,player,ready=false,playing=false,boot,previousVolume=.35,autoTimer,failed=false;
   const panel=document.createElement('section');panel.className='music-screen';panel.hidden=true;panel.setAttribute('aria-label','动画主题曲视频播放器');
   panel.innerHTML='<div class="music-screen-header"><span id="video-heading"></span><button id="video-close" aria-label="关闭视频并暂停">×</button></div><div class="official-video"><div id="official-youtube"></div></div><div class="music-screen-footer"><span id="music-status" role="status">点击播放，进入夜晚。</span><a id="official-link" target="_blank" rel="noopener noreferrer">官方视频 ↗</a></div>';
   document.body.append(panel);
   function status(text){el('#music-status').textContent=text}
-  function sync(){document.body.classList.toggle('playing',playing);play.textContent=playing?'Ⅱ':'▶';play.setAttribute('aria-label',playing?'暂停主题曲':'播放主题曲');select.value=String(track);el('#video-heading').textContent=tracks[track].tag+' / '+tracks[track].name;el('#official-link').href='https://www.youtube.com/watch?v='+tracks[track].id}
+  function sync(){document.body.classList.toggle('playing',playing);play.innerHTML=playing?pauseIcon:playIcon;play.setAttribute('aria-label',playing?'暂停主题曲':'播放主题曲');select.value=String(track);el('#video-heading').textContent=tracks[track].tag+' / '+tracks[track].name;el('#official-link').href='https://www.youtube.com/watch?v='+tracks[track].id}
   function clock(value){return Number.isFinite(value)&&value>=0?Math.floor(value/60)+':'+String(Math.floor(value%60)).padStart(2,'0'):'--:--'}
   function resetProgress(){progress.value=0;progress.disabled=true;el('#elapsed').textContent='0:00';el('#duration').textContent='--:--'}
   function ensurePlayer(){
@@ -40,7 +43,7 @@
   el('#video-close').onclick=()=>{if(ready)player.pauseVideo();playing=false;panel.hidden=true;clearTimeout(autoTimer);sync()};
   progress.oninput=()=>{if(ready){player.seekTo(Number(progress.value),true);el('#elapsed').textContent=clock(Number(progress.value))}};
   volume.oninput=()=>{if(ready){player.setVolume(Number(volume.value)*100);Number(volume.value)>0?player.unMute():player.mute()}el('#mute').setAttribute('aria-label',Number(volume.value)===0?'取消静音':'静音')};
-  el('#mute').onclick=()=>{if(Number(volume.value)){previousVolume=Number(volume.value);volume.value=0}else volume.value=previousVolume||.35;volume.oninput();el('#mute').textContent=Number(volume.value)?'♫':'♪'};
+  el('#mute').onclick=()=>{if(Number(volume.value)){previousVolume=Number(volume.value);volume.value=0}else volume.value=previousVolume||.35;volume.oninput();el('#mute').innerHTML=Number(volume.value)?volumeIcon:mutedIcon};
   setInterval(()=>{if(!ready||failed)return;const duration=player.getDuration();const current=player.getCurrentTime();if(duration>0){progress.disabled=false;progress.max=duration;progress.value=current;el('#duration').textContent=clock(duration);el('#elapsed').textContent=clock(current)}},500);
   sync();
 })();

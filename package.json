@@ -1,1 +1,1 @@
-{"name":"ras-crww-night","version":"1.0.0","private":true,"scripts":{"dev":"node server.mjs","check":"node --check dist/app.js && node --check dist/pets.js && node --check dist/music.js && node --check server.mjs"}}
+{"name":"ras-crww-night","version":"1.0.0","private":true,"scripts":{"dev":"node server.mjs","check":"node --check dist/app.js && node --check dist/pets.js && node --check dist/music.js && node --check dist/comments.js && node --check server.mjs"}}
