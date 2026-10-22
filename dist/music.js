@@ -32,7 +32,7 @@
       let script=document.getElementById('youtube-api');if(!script){script=document.createElement('script');script.id='youtube-api';script.src='https://www.youtube.com/iframe_api';script.onerror=()=>{clearTimeout(timeout);script.remove();boot=null;reject(new Error('YouTube unavailable'))};document.head.append(script)}
     });return boot;
   }
-  async function start(){panel.hidden=false;failed=false;status('正在连接官方播放器…');sync();play.disabled=true;try{await ensurePlayer();if(panel.hidden)return;player.playVideo();autoTimer=setTimeout(()=>{if(!playing&&!failed&&!panel.hidden)status('请点击视频中的播放按钮；也可打开官方视频。')},4000)}catch{failed=true;status('播放源暂时无法连接，可打开官方视频。')}finally{play.disabled=false}}
+  async function start(){panel.hidden=false;failed=false;status('正在连接官方播放器…');sync();play.disabled=true;try{await ensurePlayer();if(panel.hidden)return;if(player.getVideoData()?.video_id!==tracks[track].id)player.loadVideoById(tracks[track].id);else player.playVideo();autoTimer=setTimeout(()=>{if(!playing&&!failed&&!panel.hidden)status('请点击视频中的播放按钮；也可打开官方视频。')},4000)}catch{failed=true;status('播放源暂时无法连接，可打开官方视频。')}finally{play.disabled=false}}
   function choose(index,autoplay=false){track=(index+tracks.length)%tracks.length;clearTimeout(autoTimer);failed=false;resetProgress();playing=false;sync();if(ready){if(autoplay){panel.hidden=false;player.loadVideoById(tracks[track].id)}else{player.cueVideoById(tracks[track].id);status('已选曲，点击播放。')}}else if(autoplay)start()}
   function change(delta,autoplay=playing){choose(track+delta,autoplay)}
   play.onclick=()=>{if(playing&&ready){player.pauseVideo();return}start()};select.onchange=()=>choose(Number(select.value),playing);
